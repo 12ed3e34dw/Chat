@@ -1,0 +1,40 @@
+@media (max-width: 1920px) and (max-height: 1080px) {
+  .input_sms {
+    width: 700px;
+    margin-top: 510px;
+    padding-left: 0;
+    text-align: left;
+    height: 25px;
+    text-color: #000;
+    position: relative;
+  }
+  .button_sms {
+    width: 200px;
+    height: 60px;
+    margin-left: 10px;
+    top: 5px;
+    background-color: url(../../src/Img/free-icon-font-paper-plane-3917398.png);
+    background-size: 32px 32px;
+    position: relative;
+    border-radius: 5px;
+  }
+  .hr_chat {
+    top: 480px;
+    position: relative;
+  }
+  .New_Name {
+    margin-left: 1100px;
+    position: relative;
+  }
+  .input_new_name {
+    margin-left: 1195px;
+  }
+  .New_Name,
+  .input_new_name,
+  .button_new_name {
+    position: relative;
+    top: -65px;
+  }
+}
+
+/*# sourceMappingURL=Chat_style.css.map */
