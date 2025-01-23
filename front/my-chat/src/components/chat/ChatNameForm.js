@@ -1,6 +1,7 @@
 import socket from "../chat_notification/MySocketIo"
 import '../../styles/Chat_style.css';
 import  Img from '../../Img/free-icon-font-paper-plane-3917398.png'
+
 export default function ChatNameForm () {
 
     const doEmitMessage = (ev) => {
@@ -16,10 +17,10 @@ export default function ChatNameForm () {
 
     return(
         <>
-        <form onSubmit={doEmitMessage}>
-            <input type="text" class="input_new_name" name="name" />
-            <input type="submit" class="button_new_name"/>
-        </form>
+            <form onSubmit={doEmitMessage}>
+                <input type="text" class="input_new_name" name="name" />
+                <input type="submit" class="button_new_name"/>
+            </form>
         </>
     )
 }
