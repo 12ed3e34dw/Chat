@@ -19,9 +19,8 @@ export default function ChatMessageForm() {
             <form onSubmit={doEmitMessage}>
                 <input type="text" class="input_sms" name="message"/>
                 <input type="submit"  class="button_sms"/>
-        </form>
-</>
-)
-    ;
+            </form>
+        </>
+    )
+        ;
 }
-

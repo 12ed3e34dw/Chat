@@ -1,54 +1,62 @@
-import socket from "../chat_notification/MySocketIo"
-import {toast} from "react-toastify";
+import { useEffect, useState } from "react";
+import socket from "../chat_notification/MySocketIo";
+import ChatMessagesList from "./ChatMessageList";
 import ChatMessageForm from "./ChatMessageForm";
-import {useEffect, useState} from "react";
-import ChatMessagesList from "./ChatMessagesList";
-import ServerPing from "../chat_notification/ServerPing";
 import ChatNameForm from "./ChatNameForm";
+import ChatNameColor from "../chat_color/ChatNameColor";
 import '../../styles/Chat_style.css';
-export default function ChatWrapper () {
+import ChatMessageItem from "./ChatMessageItem";
 
 
-    const [messages, setMessages ] = useState([]);
+export default function ChatWrapper() {
+    const [messages, setMessages] = useState([]);
+    const [nameColor, setNameColor] = useState("black");
 
     useEffect(() => {
-        socket.on('new_message', (data) => {
-            console.log(data)
-            setMessages(prevMessages => [...prevMessages, data]);
-        })
+        socket.on("new_message", (data) => {
+            setMessages((prevMessages) => [...prevMessages, data]);
+        });
 
-        socket.on('new_name_user', (data) => {
-            console.log(data)
+        socket.on("new_name_user", (data) => {
             const msgToList = {
                 name: data.oldNameUser,
-                msg: ' User ' + data.oldNameUser + ' now know as ' + data.newNameUser,
-                createdAt: data.createdAt
-            }
-            setMessages(prevMessages => [...prevMessages, msgToList]);
-        })
+                msg: `User ${data.oldNameUser} is now known as ${data.newNameUser}`,
+                createdAt: data.createdAt,
+            };
+            setMessages((prevMessages) => [...prevMessages, msgToList]);
+        });
 
-        socket.on('new_user_connection', (data) => {
+        socket.on("new_user_connection", (data) => {
             const msg = {
                 name: data.name,
                 createdAt: data.connectedAt,
-                msg: " Welcome New User "
-            }
-            setMessages(prevMessages => [...prevMessages, msg]);
+                msg: "Welcome New User",
+            };
+            setMessages((prevMessages) => [...prevMessages, msg]);
+        });
 
-        })
+        return () => {
+            socket.off("new_message");
+            socket.off("new_name_user");
+            socket.off("new_user_connection");
+        };
+    }, []);
 
-    },[])
+    const handleColorChange = (color) => {
+        setNameColor(color);
+    };
 
-
-    return(
+    return (
         <>
-            <hr/>
-            <ChatMessagesList messages={messages} />
-            <hr class="hr_chat" />
+            <hr />
+            <ChatMessagesList messages={messages} nameColor={nameColor} />
+            <hr className="hr_chat" />
             <ChatMessageForm />
-            <p class="New_Name">New Name:</p>
+            <ChatMessageItem/>
+            <p className="New_Color">New Color:</p>
+            <ChatNameColor onColorChange={handleColorChange} />
+            <p className="New_Name">New Name:</p>
             <ChatNameForm />
-            <ServerPing />
         </>
-    )
+    );
 }

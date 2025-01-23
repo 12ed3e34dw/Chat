@@ -121,6 +121,8 @@ allSocketServer.on("connection",
                 + oneUserSocket.name
                 + ' ' + data)
         })
+
+
     });
 
 //Уведомление какой пинг у пользователя
@@ -136,6 +138,7 @@ setInterval(() => {
 /**
  * Run socket server
  */
+
 httpServer.listen(3030, () => {
     console.log("Socket server is running on http://localhost:3030");
 });

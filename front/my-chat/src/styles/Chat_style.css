@@ -35,6 +35,21 @@
     position: relative;
     top: -65px;
   }
+  .input_color_name {
+    position: relative;
+    margin-left: 1100px;
+    top: -65px;
+  }
+  .button_color_name {
+    position: relative;
+    margin-left: 1350px;
+    top: -86px;
+  }
+  .New_Color {
+    position: relative;
+    margin-left: 1100px;
+    top: -60px;
+  }
 }
 
 /*# sourceMappingURL=Chat_style.css.map */
